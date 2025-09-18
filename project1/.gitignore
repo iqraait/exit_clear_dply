@@ -8,13 +8,15 @@ __pycache__/
 venv/
 virtualenv/
 
-# Django
-staticfiles/
-media/
-
 # OS
 .DS_Store
 
 # IDE
 .vscode/
 .idea/
+
+
+
+
+
+

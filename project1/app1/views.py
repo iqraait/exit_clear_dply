@@ -396,3 +396,28 @@ class DepartmentEmployeeCommentViewSet(ModelViewSet):
 
         # Allow updating department_head_id here as well
         serializer.save(department_head_id=self.request.data.get('department_head_id', comment_instance.department_head_id))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

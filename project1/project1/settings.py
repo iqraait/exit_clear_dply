@@ -28,7 +28,12 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-fasw+j(6=-wp(%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True' # Use environment variable for DEBUG
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',') # Use environment variable for ALLOWED_HOSTS
+ALLOWED_HOSTS = [
+    'exitclear.onrender.com',  # Replace with your actual Render URL
+    'localhost',                # For local development
+    '127.0.0.1',                # For local development
+]
+
 
 
 # Application definition
@@ -89,6 +94,24 @@ DATABASES = {
 }
 
 
+
+
+
+
+if os.environ.get('RENDER') == 'true':  # environment variable set on Render
+    # Production (on Render)
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+else:
+    # Local development
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -140,11 +163,19 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "https://smart.iqraahosptal.in"
+    "http://localhost:5173"
 ]
 
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://exitclear.onrender.com',  # Must include https://
+    'http://localhost:8000',            # Keep http:// for local dev
+
+]
 
 
 
